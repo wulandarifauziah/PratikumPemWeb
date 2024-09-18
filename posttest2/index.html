@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> 
+    
+    <title>Order Confirmation</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img class="img-rounded" src="logoResto.jpeg" alt="Logo Restoran">
+            <div class="judul-order">
+                <h1 >Order<br>Confirmation</h1>
+            </div>
+        </div>
+
+        <!-- Bagian navigasi sederhana -->
+        <ul class="nav-bar">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Menu</a></li>
+        </ul>
+
+        <!-- Bagian informasi konfirmasi order -->
+        <div class="box">
+            <p>Thank you for your order! We've received your order on and will contact you as soon as your package is shipped. A confirmation email has been sent to <strong>abdullahazam@gmail.com</strong>. e would be very happy if you could give us a 5 star review. Thank you</p>
+            <p class="stars" style="font-size: 24px; color: #FFD700;">
+                ★★★★★
+            </p>
+            <p><a href="#" style="color: rgb(0, 0, 0);">Go to my account</a></p>
+        </div>  
+
+        <div class="order-summary">
+            <br><h2>Bukti Pemesanan</h2><br>
+            <div class="product-item">
+                <img src="nasi-goreng.jpeg" alt="Nasi Goreng Spesial">
+                <div class="product-details">
+                    <h3>Nasi Goreng</h3>
+                    <table>
+                        <tr>
+                            <td>Harga:</td>
+                            <td>Rp. 30.000</td>
+                        </tr>
+                        <tr>
+                            <td>Jumlah:</td>
+                            <td>
+                            <input type="number" nama="Jumlah" style="display: inline-block; margin-left: 0px ;">
+                            porsi </td>
+                        </tr>
+                        <tr>
+                            <td>Total Harga: </td>
+                            <td>Rp. 25.000</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="product-item">
+                <img src="es-teh-manis.jpeg" alt="Estesh Manis">
+                <div class="product-details">
+                    <h3>Estesh Manis</h3>
+                    <table>
+                        <tr>
+                            <td>Harga:</td>
+                            <td>Rp. 5.000</td>
+                        </tr>
+                        <tr>
+                            <td>Jumlah:</td>
+                            <td> <input type="number" nama="Jumlah" style="display: inline-block; margin-left: 0px ;">
+                                porsi</td>
+                        </tr>
+                        <tr>
+                            <td>Total Harga:</td>
+                            <td>Rp. 5.000</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container1"> 
+        <!-- Bagian informasi pemesanan -->
+        <div class="order-details">
+            <br>
+            <h2>Order Details</h2>
+            <p><strong>Nama Pelayan:</strong> Ahmad Nur Fauzan</p>
+            <p><strong>Nama Pemesan:</strong> Abdullah Azam</p>
+            <p><strong>Alamat Pemesan:</strong> Jl. Merdeka No.15, Kota Balikpapan</p>
+            <p>
+                <strong>Tanggal Pemesanan:</strong>
+                <input type="datetime-local" name="tanggal-pemesanan" style="display: inline-block; margin-left: 10px;">
+            </p>
+        </div>
+
+
+        <!-- Bagian Total Order -->
+        <div class="order-total">
+            <h2>Order Total</h2>
+            <table>
+                <tr>
+                    <td>Total Pesanan:</td>
+                    <td>Rp. 35.000</td>
+                </tr>
+                <tr>
+                    <td>Pajak:</td>
+                    <td>Rp. 2.000</td>
+                </tr>
+                <tr>
+                    <td>Total tagihan:</td>
+                    <td>Rp. 37.000</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Bagian metode pembayaran -->
+        <div class="payment-method">
+            <h2>Metode Pembayaran</h2><br>
+            <div class="payment-options">
+                <button class="round-button">Bank BCA</button>
+                <button class="round-button">Bank BRI</button>
+                <button class="round-button">OVO</button>
+                <button class="round-button">GoPay</button>
+            </div>
+        </div>
+    </div>
+        <div class="Container2">
+            <p><strong>Nama:</strong> Siti Fauziah Wulandari</p>
+            <p><strong>NIM:</strong> 2309106038</p>
+            <p><strong>Praktikum Web:</strong>
+                <a href="https://classroom.google.com/c/NzEwMjM0NDcyMzE3/a/NzA2MTI5NDQ3Nzg5/details" target="_blank">
+                    Posttest 2 </p>
+        </div>
+</body>
+</html>
