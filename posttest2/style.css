@@ -228,6 +228,7 @@ ul.nav-bar a {
   border-bottom-right-radius: 20px;
   box-shadow: 0 0px 10px #a96e5b;
 }
+
 @media only screen and (max-width: 768px) {
   .container,
   .container1,
@@ -291,7 +292,6 @@ ul.nav-bar a {
   }
 }
 
-/* Untuk layar di bawah 480px (ponsel) */
 @media only screen and (max-width: 480px) {
   body {
     font-size: 16px;
