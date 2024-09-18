@@ -228,3 +228,115 @@ ul.nav-bar a {
   border-bottom-right-radius: 20px;
   box-shadow: 0 0px 10px #a96e5b;
 }
+@media only screen and (max-width: 768px) {
+  .container,
+  .container1,
+  .Container2 {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .img-rounded {
+    width: 200px;
+    height: auto;
+  }
+
+  .judul-order {
+    font-size: 24px;
+    left: 0;
+    padding-top: 30px;
+  }
+
+  ul.nav-bar {
+    justify-content: center;
+  }
+
+  .box {
+    padding: 10px;
+  }
+
+  .product-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .product-details {
+    padding-left: 0;
+    border-left: none;
+    margin-top: 15px;
+  }
+
+  .order-details,
+  .order-total,
+  .payment-method {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .round-button {
+    width: 60px;
+    height: 60px;
+    font-size: 10px;
+  }
+
+  .payment-options {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Untuk layar di bawah 480px (ponsel) */
+@media only screen and (max-width: 480px) {
+  body {
+    font-size: 16px;
+  }
+
+  .container,
+  .container1,
+  .Container2 {
+    padding: 10px;
+  }
+
+  .img-rounded {
+    width: 150px;
+    height: auto;
+  }
+
+  .judul-order {
+    font-size: 22px;
+  }
+
+  .product-item img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .order-details h2,
+  .order-total h2,
+  .payment-method h2 {
+    font-size: 20px;
+  }
+
+  .order-total table,
+  .product-details table {
+    width: 100%;
+  }
+
+  .round-button {
+    width: 50px;
+    height: 50px;
+    font-size: 9px;
+  }
+
+  .payment-options {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+}
