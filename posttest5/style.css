@@ -5,7 +5,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   padding: 0;
   margin: 0;
   width: 100%; /* Pastikan body dan html mengambil 100% lebar layar */
@@ -22,23 +23,21 @@ body {
   background-color: #f9f9f9;
 }
 
-
-  header {
-    width: 100%; /* Memastikan lebar header 100% dari layar */
-    height: 100vh; /* Atur tinggi sesuai layar */
-    background: url("castle-4336616_1920.jpg") no-repeat center center/cover;
-    position: relative;
-    background-position: center;
-    box-sizing: border-box; /* Pastikan padding dan border dihitung dalam lebar elemen */
-    overflow: hidden; /* Menghindari konten keluar dari batas layar */
-    padding: 0; /* Pastikan padding header 0 agar tidak bergeser */
-    margin: 0; /* Pastikan margin 0 agar tidak ada pergeseran */
-  }
-  
+header {
+  width: 100%; /* Memastikan lebar header 100% dari layar */
+  height: 100vh; /* Atur tinggi sesuai layar */
+  background: url("castle-4336616_1920.jpg") no-repeat center center/cover;
+  position: relative;
+  background-position: center;
+  box-sizing: border-box; /* Pastikan padding dan border dihitung dalam lebar elemen */
+  overflow: hidden; /* Menghindari konten keluar dari batas layar */
+  padding: 0; /* Pastikan padding header 0 agar tidak bergeser */
+  margin: 0; /* Pastikan margin 0 agar tidak ada pergeseran */
+}
 
 /* Dark Mode Styles */
 body.dark-mode {
-  background-color: #a79480 ;
+  background-color: #a79480;
   color: #ffffff;
 }
 
@@ -50,13 +49,13 @@ a.dark-mode {
   color: #704eb4;
 }
 
-p.dark-mode{
+p.dark-mode {
   color: #a47ee2;
 }
 
 .dark-mode .exhibitions {
   background-color: #a79480;
-} 
+}
 
 .dark-mode .lukisan {
   background-color: #a79480;
@@ -84,7 +83,6 @@ p.dark-mode{
   font-weight: bold;
   font-family: "Cormorant Garamond", serif;
 }
-
 
 nav {
   top: 0;
@@ -272,8 +270,8 @@ a.ctn {
 }
 
 .popup {
-  display: none; /* Sembunyikan popup secara default */
-  position: fixed; /* Tetap di posisi yang sama saat di-scroll */
+  display: none;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -318,7 +316,7 @@ a.ctn {
 .popup.show {
   display: flex;
 }
- 
+
 .row {
   display: flex;
   justify-content: space-between;
@@ -527,22 +525,21 @@ footer a:hover {
     box-sizing: border-box; /* Pastikan padding termasuk dalam lebar */
   }
 
-  .Halaman h1{
+  .Halaman h1 {
     font-size: 40px;
   }
 
-  .row{
+  .row {
     margin: 30px;
   }
 
-  .exhibition-item{
+  .exhibition-item {
     margin: 20px;
   }
 
-  .exhibitions h2{
+  .exhibitions h2 {
     margin-top: 20px;
   }
- 
 }
 
 /* Tampilan Mobile Kecil */
@@ -592,7 +589,7 @@ footer a:hover {
     max-height: 200px; /* Batas tinggi untuk layar kecil */
     width: 100%; /* Pastikan gambar memenuhi lebar container */
   }
-  
+
   /* Pastikan tidak ada overflow di layar kecil */
   .lukisan,
   .exhibitions,
@@ -602,22 +599,21 @@ footer a:hover {
     box-sizing: border-box; /* Cegah overflow karena padding */
   }
 
-  header{
+  header {
     max-width: 100%;
     padding: 0px;
   }
-  
-  .newsletter{
+
+  .newsletter {
     width: 100%;
     margin: auto;
   }
 
-  .newsletter input{
+  .newsletter input {
     width: 100%;
   }
 
-  .halaman h1{
+  .halaman h1 {
     font-size: 2rem;
   }
 }
-

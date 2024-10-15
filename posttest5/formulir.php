@@ -2,12 +2,14 @@
 
     include 'koneksi.php';
 
-    $showResults = false; // Inisialisasi variabel untuk menampilkan hasil
+    $showResults = false; 
     $fullName = $email = $age = $city = $state = $country = $subscriptionType = $password = "";
+    $photoPath = ""; 
 
-    // Setelah data berhasil disimpan
+    $maxFileSize = 2 * 1024 * 1024;
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Mengambil data dari form
+    
         $fullName = $_POST['full_name'] ?? '';
         $email = $_POST['email'] ?? '';
         $age = $_POST['age'] ?? '';
@@ -16,22 +18,46 @@
         $country = $_POST['country'] ?? '';
         $subscriptionType = $_POST['subscription_type'] ?? '';
         $password = $_POST['password'] ?? '';
-    
-        // Menyimpan data ke tabel 'join'
-        $sql = "INSERT INTO `join` (full_name, email, Age, City, state, country, subscription_type, password) VALUES ('$fullName', '$email', '$age', '$city', '$state', '$country', '$subscriptionType', '$password')";
-    
+
+        if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
+            $fileTmpPath = $_FILES['photo']['tmp_name'];
+            $fileName = $_FILES['photo']['name'];
+            $fileSize = $_FILES['photo']['size'];
+            $fileType = $_FILES['photo']['type'];
+            $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+            if ($fileSize > $maxFileSize) {
+                echo "Ukuran file melebihi batas 2MB!";
+                exit;
+            }
+
+            $newFileName = date('Y-m-d H.i.s') . '.' . $fileExtension;
+            $uploadFileDir = './uploads/';
+            $dest_path = $uploadFileDir . $newFileName;
+
+            if (move_uploaded_file($fileTmpPath, $dest_path)) {
+                $photoPath = $dest_path; 
+            } else {
+                echo "Terjadi kesalahan saat mengunggah file!";
+                exit;
+            }
+        }
+
+        $sql = "INSERT INTO `join` (full_name, email, Age, City, state, country, subscription_type, password, photo) 
+                VALUES ('$fullName', '$email', '$age', '$city', '$state', '$country', '$subscriptionType', '$password', '$photoPath')";
+
         if ($conn->query($sql) === TRUE) {
-            // Redirect ke halaman tampilkan_data.php
             header("Location: tampilkan_data.php");
-            exit; // Menghentikan eksekusi skrip setelah redirect
+            exit; 
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
     }
-    
+
     $conn->close();
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -121,24 +147,25 @@ footer.dark-mode {
     color: white;
 }
 body.dark-mode {
-    background-color: #E1D7C6; /* Warna cream */
-    color: #333; /* Warna teks yang lebih gelap untuk kontras */
+    background-color: #E1D7C6; 
+    color: #333; 
 }
 
 .hamburger .dark-mode{
     color: #E1D7C6;
 }
 body.dark-mode .logo {
-    color: white; /* Atau warna yang kamu inginkan */
+    color: white; 
+    
 }
 
 .dark-mode .content p{
-    color: #130d06 /* Ubah warna teks saat dark mode */
+    color: #130d06
    
 }
 
 .dark-mode .content{
-    background-color: #d9bf9d; /* Atur warna latar belakang */
+    background-color: #d9bf9d;
 }
 
 nav .dark-mode {
@@ -299,6 +326,17 @@ select{
     box-sizing: border-box;
 }
 
+input[type="file"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #fff;
+    cursor: pointer;
+}
+
 input:focus {
     border-color: #66afe9;
     outline: none;
@@ -365,16 +403,6 @@ select {
     color:  #495057;
 }
 @media (max-width: 768px) {
-    .nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    background-color: #333;
-    padding: 10px;
-    }
-
     .hamburger {
     align-items: flex-start;
     display: flex;
@@ -521,48 +549,52 @@ select {
             <h2>Join us online!</h2>
             <p>Sign up to receive email communication from the Museum, and we'll send you the latest news about scientific discovery, details on exciting exhibit openings, and other programming that occurs only at your National Museum of Natural History.</p>
             <p>Please provide your contact information below:</p>
+        <form method="POST" action="" enctype="multipart/form-data">
+            <!-- Full Name Input -->
+            <label for="full_name">Full Name <span style="color: red;">*</span></label>
+            <input type="text" id="full_name" name="full_name" placeholder="Enter your full name" required><br><br>
 
-            <form method="POST" action="">
-                <!-- Full Name Input -->
-                <label for="full_name">Full Name <span style="color: red;">*</span></label>
-                <input type="text" id="full_name" name="full_name" placeholder="Enter your full name" required><br><br>
+            <!-- Email Input -->
+            <label for="email">Email: <span style="color: red;">*</span></label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
 
-                <!-- Email Input -->
-                <label for="email">Email: <span style="color: red;">*</span></label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
+            <!-- Age Input -->
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" placeholder="Enter your age"><br><br>
 
-                <!-- Age Input -->
-                <label for="age">Age:</label>
-                <input type="number" id="age" name="age" placeholder="Enter your age"><br><br>
+            <!-- City Input -->
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" placeholder="Enter your city"><br><br>
 
-                <!-- City Input -->
-                <label for="city">City:</label>
-                <input type="text" id="city" name="city" placeholder="Enter your city"><br><br>
+            <!-- State / Province Input -->
+            <label for="state">State / Province:</label>
+            <input type="text" id="state" name="state" placeholder="Enter your state or province"><br><br>
 
-                <!-- State / Province Input -->
-                <label for="state">State / Province:</label>
-                <input type="text" id="state" name="state" placeholder="Enter your state or province"><br><br>
+            <!-- Country Input -->
+            <label for="country">Country: <span style="color: red;">*</span></label>
+            <input type="text" id="country" name="country" placeholder="Enter your country" required><br><br>
 
-                <!-- Country Input -->
-                <label for="country">Country: <span style="color: red;">*</span></label>
-                <input type="text" id="country" name="country" placeholder="Enter your country" required><br><br>
+            <!-- Subscription Input -->
+            <label for="subscription_type">Subscription: <span style="color: red;">*</span></label>
+            <select name="subscription_type" id="subscription_type" required>
+                <option value="">-- Select Subscription Type --</option>
+                <option value="general">General Museum News</option>
+                <option value="science">Scientific Discoveries</option>
+                <option value="events">Exhibitions & Events</option>
+            </select><br><br>
 
-                <!-- Subscription Input -->
-                <label for="subscription_type">Subscription: <span style="color: red;">*</span></label>
-                <select name="subscription_type" id="subscription_type" required>
-                    <option value="">-- Select Subscription Type --</option>
-                    <option value="general">General Museum News</option>
-                    <option value="science">Scientific Discoveries</option>
-                    <option value="events">Exhibitions & Events</option>
-                </select><br><br>
+            <!-- Password Input -->
+            <label for="password">Password: <span style="color: red;">*</span></label>
+            <input type="password" id="password" name="password" placeholder="Create a password" required><br><br>
 
-                <!-- Password Input -->
-                <label for="password">Password: <span style="color: red;">*</span></label>
-                <input type="password" id="password" name="password" placeholder="Create a password" required><br><br>
+            <!-- Foto Upload Input -->
+            <label for="photo">Upload Foto:</label>
+            <input type="file" id="photo" name="photo" accept="image/*"><br><br>
 
-                <!-- Submit Button -->
-                <button type="submit">Submit</button>
-            </form>
+            <!-- Submit Button -->
+            <button type="submit">Submit</button>
+        </form>
+
 
             <?php if ($showResults): ?>
                 <div class="results">
